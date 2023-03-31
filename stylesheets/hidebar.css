@@ -1,0 +1,23 @@
+
+* {
+  box-sizing: border-box;
+}
+.hide {
+  position: fixed;
+  top: 0;
+  background: #003157;
+  filter: opacity(61%);
+  right: 0;
+  left: 0; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 20px;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 0 4px 12px 2px rgba(0, 0, 0, .5);
+}
+.hide img {
+  height: 80%;
+  width: auto;
+}

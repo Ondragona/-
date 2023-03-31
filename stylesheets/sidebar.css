@@ -1,0 +1,35 @@
+nav {
+  width: 300px;
+  top: 90px;
+  left: 10px;
+  padding: 30px;
+  position: fixed;
+  box-sizing: border-box;
+  opacity: .1;
+  transition: all .8s ease;
+}
+nav:hover {
+  opacity: 1;
+  transition: all .1s ease;
+}
+nav p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 13px;
+}
+nav a {
+  text-decoration: none;
+  font-size: 12px;
+  color: inherit;
+}
+nav ul {
+  list-style-type: none;
+}
+nav li {
+  margin: 5px 0;
+  line-height: 13px;
+}
+nav ul > ul {
+  margin-left: 10px;
+  color: #777;
+}
