@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheets/reset.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style media="screen">
+  .card {
+  width: 225px;
+  min-height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  transition: 0.2s;
+  position: relative;
+}
+
+.card__top {
+  flex: 0 0 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.card__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card__image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  transition: 0.2s;
+}
+
+.card__image:hover > img {
+  transform: scale(1.1);
+}
+
+.card__bottom {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  padding: 10px;
+}
+
+.card__prices {
+  display: flex;
+  margin-bottom: 10px;
+  flex: 0 0 50%;
+  font-size: 20px;
+}
+
+.card__price::after {
+  content: "₽";
+  margin-left: 4px;
+  position: relative;
+}
+
+.card__price--common {
+  font-weight: 400;
+  font-size: 17px;
+  color: #606060;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+}
+
+.card__title {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 150%;
+  color: #414141;
+}
+
+.card__add {
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  font-size: 17px;
+  color: #000000;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: auto;
+}
+
+.card__add:hover {
+  border: 1px solid #ff0000;
+  background-color: #ff0000;
+  color: #fff;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 225px);
+  width: 100%;
+  max-width: 1400px; 
+  justify-content: center;
+  justify-items: center; /
+  column-gap: 30px; 
+  row-gap: 40px; 
+  margin: 0 auto 60px auto;
+  top: 60px;
+}
+.cart__num {
+  position: absolute;
+  background-color: #d62240;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  top: -5px;
+  right: -5px;
+}
+.cart {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: #364364;
+  transition: 0.1s;
+  cursor: pointer;
+  position: fixed; 
+  top: 50px; 
+  right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  padding: 15px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.33); 
+  z-index: 1000; 
+  width: 100%;
+  height: 100%;
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  overflow-y: scroll;
+}
+
+.popup__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  width: 100%;
+  max-width: 800px;
+  min-height: 300px;
+  background-color: #fff;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  position: relative;
+}
+
+.popup__item {
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+}
+
+.popup__item:last-of-type {
+  border-bottom: none;
+}
+
+.popup__title {
+  font-size: 20px;
+}
+
+.popup__product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.popup__product-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.popup__product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.popup__product-title {
+  max-width: 300px;
+  font-weight: 500;
+}
+
+.popup__product-price {
+  font-size: 18px;
+  margin-right: 15px;
+}
+
+.popup__product-delete {
+  font-size: 12px;
+  padding: 5px;
+  cursor: pointer;
+  color: #d62240;
+}
+
+.popup__cost {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.popup__cost-title {
+  margin-right: 15px;
+  font-size: 20px;
+  color: #364364;
+  text-align: right;
+}
+
+.popup__cost-value {
+  font-size: 20px;
+}
+
+.popup__close {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  color: rgba(54, 67, 100, 0.7);
+  font-size: 20px;
+}
+
+.popup__close:hover {
+  color: rgb(54, 67, 100);
+}
+
+.popup--open {
+  display: flex;
+}
+  </style>
+</head>
+<body>
+  
+  <div class="menubar"style="width: 105px; height: 20px; left: 1095px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word; z-index: 2;"><a href="sait2.html" style="text-decoration: none; color: #CEB114">Главная</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1195px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word; z-index: 2;"><a href="mus.html" style="text-decoration: none; color: #CEB114">Музей</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1295px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word; z-index: 2;"><a href="" style="text-decoration: none; color: #CEB114">Афиша</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1395px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word; z-index: 2;"><a href="about1.html" style="text-decoration: none; color: #CEB114">О нас</a></div>
+  <button class="cart" id="cart">
+    <img class="cart__image" style="width: 50px; height: 50px;" src="images/f0a000ad-9603-42a7-bde3-82655e8c72c9.png" />
+    <div class="cart__num" id="cart_num">0</div>
+  </button>
+    <div class="popup">
+      <div class="popup__container" id="popup_container">
+        <div class="popup__item">
+          <h1 class="popup__title">Оформление заказа</h1>
+        </div>
+        <div class="popup__item" id="popup_product_list">
+          <div class="popup__product">
+            <div class="popup__product-wrap">
+              <img
+                src="./images/iphone-14-pro-max-gold.png"
+                alt="Apple IPhone 14 Pro Max 256Gb"
+                class="popup__product-image"
+              />
+              <h2 class="popup__product-title">
+                Смартфон Apple IPhone 14 Pro Max 256Gb, золотой
+              </h2>
+            </div>
+            <div class="popup__product-wrap">
+              <div class="popup__product-price">135000</div>
+              <button class="popup__product-delete"></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup__item">
+          <div class="popup__cost">
+            <h2 class="popup__cost-title">Итого</h2>
+            <output class="popup__cost-value" id="popup_cost">150000</output>
+          </div>
+          <div class="popup__cost">
+            <h2 class="popup__cost-title">Скидка</h2>
+            <output class="popup__cost-value" id="popup_discount">15000</output>
+          </div>
+          <div class="popup__cost">
+            <h2 class="popup__cost-title">Итого со скидкой</h2>
+            <output class="popup__cost-value" id="popup_cost_discount"
+              >135000</output
+            >
+          </div>
+        </div>
+        <button class="popup__close" id="popup_close"></button>
+      </div>
+    </div>
+
+ <div class="cards">
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824690808.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+      <div class="card__prices">
+        <div class="card__price card__price--discount"><strong>650</strong></div>
+      </div>
+      <p>
+        Чехол длч смартфона "Рекламиум"
+      </p>
+      <button class="card__add">В корзину</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824690885.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>550</strong></div>
+    </div>
+    <p>
+      Чехол длч смартфона "Рекламиум"
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824690973.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>2 000</strong></div>
+    </div>
+    <p>
+      Сумка с персонажами
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824691057.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>2 100</strong></div>
+    </div>
+    <p>
+      Сумка с персонажами
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824691157.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>1 500</strong></div>
+    </div>
+    <p>
+     Футболка rec
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824691263.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>1 500</strong></div>
+    </div>
+    <p>
+     Футболка reclamium
+    </p>
+    <button class="card__add">В корзину</button>
+  </div> 
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824691347.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>750</strong></div>
+    </div>
+    <p>
+     Кепка с принтом
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+  <div class="card">
+    <div class="card__top">
+      <a href="#" class="card__image">
+        <img src="images/kandinsky-download-1696824691427.png"/>
+      </a>
+    </div>
+    <div class="card__bottom">
+    <div class="card__prices">
+      <div class="card__price card__price--discount"><strong>650</strong></div>
+    </div>
+    <p>
+     Кепка с принтом
+    </p>
+    <button class="card__add">В корзину</button>
+  </div>
+  </div>
+</div>
+<script>
+function toNum(str) {
+  const num = Number(str.replace(/ /g, ""));
+  return num;
+}
+
+function toCurrency(num) {
+  const format = new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: "RUB",
+    minimumFractionDigits: 0,
+  }).format(num);
+  return format;
+}
+const cardAddArr = Array.from(document.querySelectorAll(".card__add"));
+const cartNum = document.querySelector("#cart_num");
+const cart = document.querySelector("#cart");
+const popup = document.querySelector(".popup");
+const popupClose = document.querySelector("#popup_close");
+const body = document.body;
+const popupContainer = document.querySelector("#popup_container");
+const popupProductList = document.querySelector("#popup_product_list");
+const popupCost = document.querySelector("#popup_cost");
+const popupDiscount = document.querySelector("#popup_discount");
+const popupCostDiscount = document.querySelector("#popup_cost_discount");
+
+cart.addEventListener("click", (e) => {
+  e.preventDefault();
+  popup.classList.add("popup--open");
+  body.classList.add("lock");
+});
+
+popupClose.addEventListener("click", (e) => {
+  e.preventDefault();
+  popup.classList.remove("popup--open");
+  body.classList.remove("lock");
+});
+
+class Product {
+  imageSrc;
+  name;
+  price;
+  priceDiscount;
+  constructor(card) {
+    this.imageSrc = card.querySelector(".card__image").children[0].src;
+    this.name = card.querySelector(".card__title").innerText;
+    this.price = card.querySelector(".card__price--common").innerText;
+    this.priceDiscount = card.querySelector(".card__price--discount").innerText;
+  }
+}
+
+const cardAddArr = Array.from(document.querySelectorAll(".card__add"));
+const cartNum = document.querySelector("#cart_num");
+
+class Cart {
+  products;
+  constructor() {
+    this.products = [];
+  }
+  get count() {
+    return this.products.length;
+  }
+  addProduct(product) {
+    this.products.push(product);
+  }
+  removeProduct(index) {
+    this.products.splice(index, 1);
+  }
+  get cost() {
+    const prices = this.products.map((product) => {
+      return toNum(product.price);
+    });
+    const sum = prices.reduce((acc, num) => {
+      return acc + num;
+    }, 0);
+    return sum;
+  }
+  get costDiscount() {
+    const prices = this.products.map((product) => {
+      return toNum(product.priceDiscount);
+    });
+    const sum = prices.reduce((acc, num) => {
+      return acc + num;
+    }, 0);
+    return sum;
+  }
+  get discount() {
+    return this.cost - this.costDiscount;
+  }
+}
+
+const myCart = new Cart();
+
+if (localStorage.getItem("cart") == null) {
+  localStorage.setItem("cart", JSON.stringify(myCart));
+}
+
+const savedCart = JSON.parse(localStorage.getItem("cart"));
+myCart.products = savedCart.products;
+cartNum.textContent = myCart.count;
+
+function popupContainerFill() {
+  popupProductList.innerHTML = null;
+  const savedCart = JSON.parse(localStorage.getItem("cart"));
+  myCart.products = savedCart.products;
+  const productsHTML = myCart.products.map((product) => {
+    const productItem = document.createElement("div");
+    productItem.classList.add("popup__product");
+
+    const productWrap1 = document.createElement("div");
+    productWrap1.classList.add("popup__product-wrap");
+    const productWrap2 = document.createElement("div");
+    productWrap2.classList.add("popup__product-wrap");
+
+    const productImage = document.createElement("img");
+    productImage.classList.add("popup__product-image");
+    productImage.setAttribute("src", product.imageSrc);
+
+    const productTitle = document.createElement("h2");
+    productTitle.classList.add("popup__product-title");
+    productTitle.innerHTML = product.name;
+
+    const productPrice = document.createElement("div");
+    productPrice.classList.add("popup__product-price");
+    productPrice.innerHTML = toCurrency(toNum(product.priceDiscount));
+
+    const productDelete = document.createElement("button");
+    productDelete.classList.add("popup__product-delete");
+    productDelete.innerHTML = "";
+
+    productDelete.addEventListener("click", () => {
+      myCart.removeProduct(product);
+      localStorage.setItem("cart", JSON.stringify(myCart));
+      popupContainerFill();
+    });
+
+    productWrap1.appendChild(productImage);
+    productWrap1.appendChild(productTitle);
+    productWrap2.appendChild(productPrice);
+    productWrap2.appendChild(productDelete);
+    productItem.appendChild(productWrap1);
+    productItem.appendChild(productWrap2);
+
+    return productItem;
+  });
+
+  productsHTML.forEach((productHTML) => {
+    popupProductList.appendChild(productHTML);
+  });
+
+  popupCost.value = toCurrency(myCart.cost);
+  popupDiscount.value = toCurrency(myCart.discount);
+  popupCostDiscount.value = toCurrency(myCart.costDiscount);
+}
+</script>
+</body>
+</html>

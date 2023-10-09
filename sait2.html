@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheets/reset.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js'></script><script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js'></script>
+  <script src="https://js.cx/libs/animate.js"></script>
+  <link href="stylesheets/contentss.css" rel="stylesheet" type="text/css">
+  <title>театр персонажей "Рекламиум"</title>
+</head>
+<body>
+<button><strong>Click</strong></button>
+<div id="toggle"><img src="images/уу27c5d87a-b0ec-42ad-8b8d-04fef085591e.png" alt=""></div>
+<div id="toggle1"><img src="images/112a560298-97ba-4db0-9f50-2e6d4ef5571c.png" alt=""></div>
+<div id="a1"><img src="images/72d75b5f-2b68-4a52-88d0-3947f89461ad.png" alt=""></div>
+<div id="a2"><img src="images/72188f83-3b1c-4105-b6c4-0ecff2b09e3b.png" alt=""></div>
+<div id="a3"><img src="images/5471f429-0159-4655-8b5a-91306e78404f.png" alt=""></div>
+<div id="a4"><img src="images/ce73be7c-a750-4e82-aefc-cdaf58c3ac39.png" alt=""></div>
+<div id="circle" class="ui-widget-content"></div>
+<div id="circle1" class="ui-widget-content"></div>
+<div id="c" class="ui-widget-content"></div>
+<div id="d" class="ui-widget-content"></div>
+<h1>REC<br>LAM<br>IUM</h1>
+<div id="b"></div>
+<div class=”cursor”></div>
+<script>
+  $(function() {
+    $('button').click( function () {
+      $('button').hide("drop", { direction: "down" }, "slow");
+    });
+  });
+  $(function() {
+    $('button').click( function () {
+      $("#b").hide("drop", { direction: "down" }, "fast");
+    });
+  });
+  $(function(){
+    $( 'button' ).click(function() {
+      $( "#toggle" ).toggle( "slide", { direction: "left" }, "slow" );
+    });
+  });
+  $(function(){
+    $( 'button' ).click(function() {
+      $( "#toggle1" ).toggle( "slide", { direction: "right" }, "slow" );
+    });
+  });
+  $( function() {
+    $( "#circle" ).draggable();
+  });
+  $( document ).click(function() {
+    $('#circle').show().animate({ top: 100 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#circle1').show().animate({ top: 470 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#a1').show().animate({ top: 570 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#a2').show().animate({ top: 570 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#a3').show().animate({ top: 570 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#a4').show().animate({ top: 570 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+    $( document ).click(function() {
+    $('#c').show().animate({ top: 520 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( document ).click(function() {
+    $('#d').show().animate({ top: 650 }, {duration: 5000, easing: 'easeOutBounce'});
+  });
+  $( function() {
+    $( '#circle' ).draggable();
+  });
+  $( function() {
+    $( "#circle1" ).draggable();
+  });
+  $( function() {
+    $( '#a1' ).draggable();
+  });
+  $( function() {
+    $( '#a2' ).draggable();
+  });
+  $( function() {
+    $( '#a3' ).draggable();
+  });
+  $( function() {
+    $( '#a4' ).draggable();
+  });
+    $( function() {
+    $( '#c' ).draggable();
+  });
+  $( function() {
+    $( '#d' ).draggable();
+  });
+  $( function() {
+    $( "h1" ).hover(function() {
+      $( 'body' ).toggleClass( "active" )
+    });
+  });
+</script>
+<div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1095px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word"><a href="about1.html" style="text-decoration: none; color: #CEB114">О нас</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1195px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word"><a href="mus.html" style="text-decoration: none; color: #CEB114">Музей</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1295px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word"><a href="" style="text-decoration: none; color: #CEB114">Афиша</a></div>
+  <div class="menubar"style="width: 105px; height: 20px; left: 1395px; top: 15px; position: fixed; font-size: 18px; font-family: Inter; font-weight: 500; word-wrap: break-word"><a href="shop.html" style="text-decoration: none; color: #CEB114">Магазин</a></div>
+  <div style="width: 100%; height: 1086px; left: 0px; top: 750px; position: absolute; background: linear-gradient(0deg, #050400 0%, #050400 100%), linear-gradient(0deg, #050400 0%, #050400 100%)"></div>
+  <marquee direction="right" scrolldelay="1" style="width: 2000px; height: 132px; left: -360px; top: 1900px; position: absolute; text-align: center; color: black; font-size: 110px; font-family: Inter; font-weight: 700; word-wrap: break-word"> АФИША АФИША АФИША АФИША</marquee>
+  <marquee direction="right" scrolldelay="1" style="width: 2000px; height: 100px; left: -451px; top: 900px; position: absolute; text-align: center; color: white; font-size: 110px; font-family: Inter; font-weight: 700; word-wrap: break-word">О ТЕАТРЕ О ТЕАТРЕ О ТЕАТРЕ</marquee>
+  <div style="width: 100%; height: 600px; left: 0px; top: 2900px; position: absolute; background: #670101"></div>
+  <div style="width: 299px; height: 47px; left: 600px; top: 2920px; position: absolute; text-align: center; color: white; font-size: 40px; font-family: Inter; font-weight: 700; word-wrap: break-word">Контакты</div>
+  <div style="width: 100%; height: 83px; left: 0px; top: 3417px; position: absolute; background: black"></div>
+  <div style="width: 800px; left: 17px; top: 1200px; position: absolute; color: white; font-size: 18px; font-family: Inter; font-weight: 400; word-wrap: break-word">Театр рекламных персонажей - это особое место, где оживают самые известные и любимые герои рекламных роликов. Здесь они не только продолжают свои приключения, но и позволяют зрителям заглянуть за кулисы и узнать больше о том, как создаются рекламные кампании.<br/>В этом театре каждый персонаж имеет свою собственную историю и характер. Они выходят на сцену и демонстрируют свои навыки и таланты, пытаясь убедить зрителей в необходимости использования тех или иных товаров или услуг.<br/>Здесь можно увидеть забавные и привлекательные персонажи, которые с легкостью запоминаются и становятся частью поп-культуры. Они могут быть смешными, добрыми, интеллектуальными или даже загадочными. Все зависит от идеи и цели рекламной кампании.<br/>Театр рекламных персонажей предлагает зрителям не только развлечение, но и возможность задуматься над тем, каким образом реклама влияет на нашу жизнь. Он показывает, что персонажи рекламы не просто продукты витрин, а настоящие герои, которые могут вдохновить и порадовать нас.<br/></div>
+  <div style="width: 800px; left: 577px; top: 1500px; position: absolute; color: white; font-size: 18px; font-family: Inter; font-weight: 400; word-wrap: break-word">В этом театре зрители могут увидеть, как создается рекламный ролик - от написания сценария и выбора актеров до съемок и монтажа. Они могут узнать о том, какие техники и трюки используются для создания эффектных и запоминающихся рекламных роликов.<br/>Театр рекламных персонажей - это место, где реклама превращается в искусство. Здесь зрители могут насладиться высоким качеством исполнения и оригинальностью идей. Они могут увидеть, как реклама может быть не только эффективным инструментом продаж, но и источником вдохновения и радости.<br/>Таким образом, театр рекламных персонажей представляет собой уникальное место, где реклама становится искусством, а персонажи рекламы - настоящими звездами.</div>
+  <div style="left: 19px; top: 3000px; position: absolute"><span style="color: white; font-size: 26px; font-family: Inter; font-weight: 600; word-wrap: break-word">Адрес:<br/><br/></span><span style="color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">г.Москва<br/>ул. Рекламная, д.4 (вход со стороны метро)</span></div>
+  <div style="left: 17px; top: 3200px; position: absolute"><span style="color: white; font-size: 26px; font-family: Inter; font-weight: 600; word-wrap: break-word">Контакты:<br/><br/></span><span style="color: white; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">+7(999)666-66-66<br/>reclamium@yandex.ru</span></div>
+  <div style="left: 19px; top: 3427px; position: absolute; color: white; font-size: 24px; font-family: Inter; font-weight: 500; word-wrap: break-word">Гончар Олеся<br/>Б22ДЗ10</div>
+  <img style="width: 154px; height: 83px; left: 1300px; top: 3417px; position: absolute" src="images/maxresdefault.jpg" />
+  <img style="width: 346px; height: 194px; left: 17px; top: 1500px; position: absolute" src="images/yfgtutygkmhuiyu.png" />
+  <img style="width: 446px; height: 294px; left: 1000px; top: 1100px; position: absolute" src="images/rfodfkbfgob,.png" />
+  <img style="width: 260px; height: 331px; left: 85px; top: 2300px; position: absolute;" src="images/kandinsky-download-1696207337490.png" />
+  <img style="width: 260px; height: 337px; left: 668px; top: 2110px; position: absolute;" src="images/kandinsky-download-1696207337133.png" />
+  <img style="width: 263px; height: 331px; left: 700px; top: 2350px; position: absolute;" src="images/kandinsky-download-1696207337195.png" />
+  <img style="width: 252px; height: 325px; left: 322px; top: 2260px; position: absolute;" src="images/kandinsky-download-1696207337262.png" />
+  <img style="width: 270px; height: 348px; left: 900px; top: 2450px; position: absolute;" src="images/kandinsky-download-1696207337332.png" />
+  <img style="width: 260px; height: 317px; left: 1000px; top: 2300px; position: absolute;" src="images/kandinsky-download-1696207337415.png" />
+</div>
+</body>
+</html>
